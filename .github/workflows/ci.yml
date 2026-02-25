@@ -1,0 +1,158 @@
+# CI/CD Pipeline for Pookie's Flowers
+#
+# Pipeline stages:
+#   1. quality     — lint + TypeScript type-check
+#   2. unit-tests  — Jest unit/component tests (parallel with e2e)
+#   2. e2e-tests   — Selenium browser tests against a production build (parallel with unit)
+#   3. deploy      — Vercel production deploy (main branch only, after all tests pass)
+#
+# Required GitHub Secrets:
+#   VERCEL_TOKEN       — Personal access token from vercel.com/account/tokens
+#   VERCEL_ORG_ID      — Found in your Vercel project's Settings > General
+#   VERCEL_PROJECT_ID  — Found in your Vercel project's Settings > General
+
+name: CI/CD
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+# Cancel in-progress runs for the same branch (saves CI minutes on rapid pushes).
+# Never cancel production deploys on main.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  # ─── Stage 1: Code Quality ──────────────────────────────────────────────────
+  quality:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+
+  # ─── Stage 2a: Unit Tests ───────────────────────────────────────────────────
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
+        env:
+          CI: true
+
+  # ─── Stage 2b: E2E Tests ────────────────────────────────────────────────────
+  e2e-tests:
+    name: E2E Tests (Selenium)
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # selenium-webdriver's built-in selenium-manager automatically downloads
+      # a ChromeDriver that matches the Chrome version already on ubuntu-latest.
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Start production server
+        run: npm start &
+        env:
+          PORT: 3000
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run Selenium E2E tests
+        run: npm run test:e2e
+        env:
+          BASE_URL: http://localhost:3000
+          # HEADLESS is unset → driver defaults to headless mode
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-failure-screenshots
+          path: tests/e2e/screenshots/
+          if-no-files-found: ignore
+
+  # ─── Stage 3: Deploy to Vercel ──────────────────────────────────────────────
+  deploy:
+    name: Deploy to Vercel (Production)
+    runs-on: ubuntu-latest
+    needs: [unit-tests, e2e-tests]
+    # Only deploy when a commit lands on main — not on PRs or other branches
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pull Vercel project settings & environment variables
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build for production (Vercel)
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy prebuilt output to Vercel
+        id: deploy
+        run: |
+          DEPLOYMENT_URL=$(npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+          echo "Deployed to: $DEPLOYMENT_URL"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
