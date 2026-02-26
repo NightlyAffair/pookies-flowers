@@ -16,27 +16,27 @@ const occasions = [
 
 const pastWork = [
   {
-    image: "https://images.unsplash.com/photo-1686424735290-ea6ac590983c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaW5rJTIwcm9zZSUyMGJvdXF1ZXQlMjBhcnJhbmdlbWVudHxlbnwxfHx8fDE3NzIwMjY1MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/22feb26/IMG_6160.JPG",
     alt: "Pink rose bouquet",
   },
   {
-    image: "https://images.unsplash.com/photo-1751165390869-d129eb67f960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjBmbG9yYWwlMjBhcnJhbmdlbWVudCUyMGNvbG9yZnVsfGVufDF8fHx8MTc3MjAyNjUwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/14feb26/IMG_5752.JPG",
     alt: "Colorful arrangement",
   },
   {
-    image: "https://images.unsplash.com/photo-1593003520741-64323f3aea7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5ZWxsb3clMjBzdW5mbG93ZXIlMjBhcnJhbmdlbWVudCUyMGJyaWdodHxlbnwxfHx8fDE3NzIwMjY1MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/9feb26/IMG_5578.JPG",
     alt: "Sunflower arrangement",
   },
   {
-    image: "https://images.unsplash.com/photo-1654108285011-2e21d0b26d0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZWFjaCUyMGNvcmFsJTIwZmxvd2VyJTIwYm91cXVldCUyMHNvZnR8ZW58MXx8fHwxNzcyMDI2NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/2feb26/IMG_5394.JPG",
     alt: "Peach bouquet",
   },
   {
-    image: "https://images.unsplash.com/photo-1588573042613-981033a3643d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdXJwbGUlMjBsYXZlbmRlciUyMGZsb3dlcnMlMjBkZWxpY2F0ZXxlbnwxfHx8fDE3NzIwMjY1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/31dec25/IMG_1972.JPG",
     alt: "Lavender arrangement",
   },
   {
-    image: "https://images.unsplash.com/photo-1662326495491-764da874b01f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXNoJTIwZmxvd2VyJTIwYXJyYW5nZW1lbnQlMjBib3VxdWV0fGVufDF8fHx8MTc3MjAyNjUwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/bouquets/Rose%20bouquet%20-%2012%20Oct/photo_2_2026-02-26_18-18-08.jpg",
     alt: "Lush bouquet",
   },
 ];
@@ -50,7 +50,7 @@ export default function CustomBouquetsPage() {
       <section className="relative min-h-[500px] bg-[#0F2044] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1753982861953-9d83250dc213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kJTIwaG9sZGluZyUyMHdyYXBwZWQlMjBib3VxdWV0fGVufDF8fHx8MTc3MjAyNjUwMXww&ixlib=rb-4.1.0&q=80&w=1080"
+            src="/images/bouquets/Rose%20bouquet%20-%2012%20Oct/photo_1_2026-02-26_18-18-08.jpg"
             alt="Hand holding wrapped bouquet"
             className="w-full h-full object-cover opacity-40"
           />

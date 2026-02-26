@@ -11,22 +11,22 @@ const arrangements = [
   {
     month: "November",
     year: 2025,
-    image: "https://images.unsplash.com/photo-1593003520741-64323f3aea7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5ZWxsb3clMjBzdW5mbG93ZXIlMjBhcnJhbmdlbWVudCUyMGJyaWdodHxlbnwxfHx8fDE3NzIwMjY1MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/vase/Nov%202025/IMG_3051.JPG",
   },
   {
     month: "December",
     year: 2025,
-    image: "https://images.unsplash.com/photo-1686424735290-ea6ac590983c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaW5rJTIwcm9zZSUyMGJvdXF1ZXQlMjBhcnJhbmdlbWVudHxlbnwxfHx8fDE3NzIwMjY1MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/vase/Dec%202025/IMG_1195.JPG",
   },
   {
     month: "January",
     year: 2026,
-    image: "https://images.unsplash.com/photo-1751165390869-d129eb67f960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjBmbG9yYWwlMjBhcnJhbmdlbWVudCUyMGNvbG9yZnVsfGVufDF8fHx8MTc3MjAyNjUwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/vase/Jan%202026/IMG_5072.JPG",
   },
   {
     month: "February",
     year: 2026,
-    image: "https://images.unsplash.com/photo-1654108285011-2e21d0b26d0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZWFjaCUyMGNvcmFsJTIwZmxvd2VyJTIwYm91cXVldCUyMHNvZnR8ZW58MXx8fHwxNzcyMDI2NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "/images/vase/Feb%202026/IMG_6090.JPG",
   },
   // Add new months here as the business grows
 ];
@@ -40,7 +40,7 @@ export default function VaseArrangementsPage() {
       <section className="relative min-h-[500px] bg-[#0F2044] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1761856906802-899645332bc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2YXNlJTIwZmxvd2VycyUyMG9uJTIwdGFibGUlMjBsaWZlc3R5bGV8ZW58MXx8fHwxNzcyMDI2NTAxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+            src="/images/vase/Feb%202026/IMG_6107.JPG"
             alt="Vase arrangement on table"
             className="w-full h-full object-cover opacity-40"
           />
