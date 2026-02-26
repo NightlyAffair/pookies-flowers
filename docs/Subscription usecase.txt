@@ -1,0 +1,7 @@
+Situation: Use has clicked vase arrangements from the home page -> now here.
+
+Content:
+There is no pick you plan there is only monthly deliveries, for past arrangements start from recent to oldest, subscribe now CTA should bring them to https://forms.gle/Y6JfQxbKcHj3gg1J9
+
+Animation:
+Use scroll animations to bring the content in as the user scrolls. 

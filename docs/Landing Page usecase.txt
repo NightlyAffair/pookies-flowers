@@ -1,0 +1,6 @@
+Target Customer: Someone who is interested in purchasing flowers 
+
+Section 1: Section without CTA buttons. Using 3d animation, it should have a full screen flower that minimizes into the background image, with some text still undecided, you may use "Welcome to Pookies Flowers", should be able to kinda see the next section that is cream colour so they know to scroll.
+Section 2:  Clear CTA buttons to lead them to subscribing or to ordering a custom bouquet (Keep the pictures, make them clickable)
+
+

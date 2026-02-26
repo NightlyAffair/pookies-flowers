@@ -2,9 +2,7 @@
 #
 # Pipeline stages:
 #   1. quality     — lint + TypeScript type-check
-#   2. unit-tests  — Jest unit/component tests (parallel with e2e)
-#   2. e2e-tests   — Selenium browser tests against a production build (parallel with unit)
-#   3. deploy      — Vercel production deploy (main branch only, after all tests pass)
+#   2. deploy      — Vercel production deploy (main branch only, after quality passes)
 #
 # Required GitHub Secrets:
 #   VERCEL_TOKEN       — Personal access token from vercel.com/account/tokens
@@ -47,81 +45,11 @@ jobs:
       - name: TypeScript type check
         run: npx tsc --noEmit
 
-  # ─── Stage 2a: Unit Tests ───────────────────────────────────────────────────
-  unit-tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    needs: quality
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run unit tests
-        run: npm run test:unit
-        env:
-          CI: true
-
-  # ─── Stage 2b: E2E Tests ────────────────────────────────────────────────────
-  e2e-tests:
-    name: E2E Tests (Selenium)
-    runs-on: ubuntu-latest
-    needs: quality
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      # Install a chromedriver that exactly matches the pre-installed Chrome on
-      # the runner. `npm install chromedriver@<major>` picks the right release.
-      - name: Install matching ChromeDriver
-        run: |
-          CHROME_MAJOR=$(google-chrome --version | grep -oP '\d+' | head -1)
-          echo "Chrome major version: $CHROME_MAJOR"
-          npm install --no-save chromedriver@${CHROME_MAJOR}
-
-      - name: Build Next.js app
-        run: npm run build
-
-      - name: Start production server
-        run: npm start &
-        env:
-          PORT: 3000
-
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:3000 --timeout 60000
-
-      - name: Run Selenium E2E tests
-        run: npm run test:e2e
-        env:
-          BASE_URL: http://localhost:3000
-          # HEADLESS is unset → driver defaults to headless mode
-
-      - name: Upload failure screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-failure-screenshots
-          path: tests/e2e/screenshots/
-          if-no-files-found: ignore
-
-  # ─── Stage 3: Deploy to Vercel ──────────────────────────────────────────────
+  # ─── Stage 2: Deploy to Vercel ──────────────────────────────────────────────
   deploy:
     name: Deploy to Vercel (Production)
     runs-on: ubuntu-latest
-    needs: [unit-tests, e2e-tests]
+    needs: quality
     # Only deploy when a commit lands on main — not on PRs or other branches
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:

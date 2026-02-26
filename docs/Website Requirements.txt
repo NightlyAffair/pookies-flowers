@@ -1,0 +1,6 @@
+Must be mobile friendly
+
+Issues as of:
+
+26/2
+Tabs(Home, vase arrangements, custom bouquets) are not in a "burger" menu, congesting the top nav bar
