@@ -13,6 +13,10 @@ describe('Custom Bouquets Page (/custom-bouquets)', () => {
     driver = await createDriver();
     await driver.get(`${BASE_URL}/custom-bouquets`);
     await driver.wait(until.elementLocated(By.css('body')), 10_000);
+    // Scroll to bottom to trigger all whileInView animations, then back to top
+    await driver.executeScript('window.scrollTo(0, document.body.scrollHeight)');
+    await driver.sleep(1000);
+    await driver.executeScript('window.scrollTo(0, 0)');
   });
 
   afterAll(async () => {
