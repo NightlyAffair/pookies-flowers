@@ -84,10 +84,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # selenium-webdriver's built-in selenium-manager automatically downloads
-      # a ChromeDriver that matches the Chrome version already on ubuntu-latest.
-      - name: Verify Chrome is available
-        run: google-chrome --version
+      # Install a chromedriver that exactly matches the pre-installed Chrome on
+      # the runner. `npm install chromedriver@<major>` picks the right release.
+      - name: Install matching ChromeDriver
+        run: |
+          CHROME_MAJOR=$(google-chrome --version | grep -oP '\d+' | head -1)
+          echo "Chrome major version: $CHROME_MAJOR"
+          npm install --no-save chromedriver@${CHROME_MAJOR}
 
       - name: Build Next.js app
         run: npm run build

@@ -16,7 +16,7 @@ export default function HomePage() {
       <section className="relative min-h-[600px] md:min-h-[700px] bg-[#0F2044] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1662326495491-764da874b01f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXNoJTIwZmxvd2VyJTIwYXJyYW5nZW1lbnQlMjBib3VxdWV0fGVufDF8fHx8MTc3MjAyNjUwMHww&ixlib=rb-4.1.0&q=80&w=1080"
+            src="/images/vase/Feb%202026/IMG_6090.JPG"
             alt="Lush flower arrangement"
             className="w-full h-full object-cover opacity-40"
           />
@@ -78,7 +78,7 @@ export default function HomePage() {
             className="relative rounded-3xl overflow-hidden aspect-[3/4] group"
           >
             <img
-              src="https://images.unsplash.com/photo-1761856906802-899645332bc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2YXNlJTIwZmxvd2VycyUyMG9uJTIwdGFibGUlMjBsaWZlc3R5bGV8ZW58MXx8fHwxNzcyMDI2NTAxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              src="/images/vase/Jan%202026/IMG_5072.JPG"
               alt="Vase arrangement"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
@@ -105,7 +105,7 @@ export default function HomePage() {
             className="relative rounded-3xl overflow-hidden aspect-[3/4] group"
           >
             <img
-              src="https://images.unsplash.com/photo-1753982861953-9d83250dc213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kJTIwaG9sZGluZyUyMHdyYXBwZWQlMjBib3VxdWV0fGVufDF8fHx8MTc3MjAyNjUwMXww&ixlib=rb-4.1.0&q=80&w=1080"
+              src="/images/bouquets/14feb26/IMG_5752.JPG"
               alt="Custom bouquet"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />

@@ -5,7 +5,17 @@
       "Bash(npm init:*)",
       "Bash(npm install:*)",
       "Bash(npx tailwindcss init)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && gh run view 22401046128 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && gh run view 22401046128 --log-failed 2>&1)",
+      "Bash(head:*)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && npm run test:unit 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && npm run lint 2>&1)",
+      "Bash(tail:*)",
+      "Bash(echo chrome not found in registry:*)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && npm run test:e2e -- --testPathPattern=\"navigation\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\nithv\\\\OneDrive\\\\Documents\\\\Stuffz\\\\Code\\\\pookies-flowers\" && npx jest --config jest.e2e.config.js --testPathPatterns=\"navigation\" 2>&1)",
+      "Bash(powershell.exe:*)"
     ]
   }
 }

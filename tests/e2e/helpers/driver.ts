@@ -1,8 +1,6 @@
 import { Builder, WebDriver } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome';
-// selenium-webdriver 4.11+ includes selenium-manager which auto-downloads
-// the correct ChromeDriver for the installed Chrome version — no manual
-// chromedriver import needed.
+import 'chromedriver'; // registers the local chromedriver binary — avoids selenium-manager network calls
 
 export const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
 
