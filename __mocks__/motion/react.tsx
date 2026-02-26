@@ -17,7 +17,7 @@ type MotionProps = {
 function createMotionComponent(tag: string) {
   const Component = React.forwardRef<HTMLElement, MotionProps>(
     ({ children, initial, animate, transition, whileInView, viewport, whileHover, whileTap, exit, variants, ...props }, ref) => {
-      return React.createElement(tag, { ...props, ref }, children);
+      return React.createElement(tag, { ...(props as Record<string, unknown>), ref }, children as React.ReactNode);
     }
   );
   Component.displayName = `motion.${tag}`;
